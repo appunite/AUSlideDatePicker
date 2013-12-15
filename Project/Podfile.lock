@@ -1,0 +1,14 @@
+PODS:
+  - AUSlideDatePicker (0.1.0)
+
+DEPENDENCIES:
+  - AUSlideDatePicker (from `../`)
+
+EXTERNAL SOURCES:
+  AUSlideDatePicker:
+    :path: ../
+
+SPEC CHECKSUMS:
+  AUSlideDatePicker: 0b2b62d794f4e197e0db33f8a15832f0c547a6f7
+
+COCOAPODS: 0.28.0
