@@ -63,14 +63,6 @@
  */
 - (void)scrollToDate:(NSDate *)date animated:(BOOL)animated;
 
-@end
-
-@protocol AUSlideDatePickerViewDelegate <NSObject>
-- (void)slideDatePickerView:(AUSlideDatePickerView *)dateSliderView
-              didChangeDate:(NSDate *)date;
-@end
-
-@interface AUSlideDatePickerView (DateFormatters)
 /**
  *  Return day number from `NSDate`
  *
@@ -97,6 +89,12 @@
  *  @return `NSString` of month name
  */
 - (NSString *)monthTextForomDate:(NSDate *)date;
+
+@end
+
+@protocol AUSlideDatePickerViewDelegate <NSObject>
+- (void)slideDatePickerView:(AUSlideDatePickerView *)dateSliderView
+              didChangeDate:(NSDate *)date;
 @end
 
 extern NSString * const kDateSliderCellIdentifier;
