@@ -68,15 +68,16 @@ NSString * const kDateSliderCellIdentifier = @"kDateSliderCellIdentifier";
     CGSize centerViewSize = _centerView.frame.size;
     CGRect centerViewRect = CGRectIntegral(CGRectMake(CGRectGetMidX(rect) - centerViewSize.width * .5f, CGRectGetMaxY(rect) - centerViewSize.height, centerViewSize.width, centerViewSize.height));
     [_centerView setFrame:centerViewRect];
+
+    // calculate scroll view insets
+    CGFloat inset = floorf((CGRectGetMidX(self.bounds) - _itemSize.width * .5f));
+    _collectionView.contentInset = UIEdgeInsetsMake(0.f, inset, 0.f, inset);
 }
 
 - (void)reloadData {
     NSParameterAssert(_endDate);
     NSParameterAssert(_startDate);
     NSAssert([_endDate compare:_startDate] != NSOrderedAscending, @"End date must be greater than start date!");
-    
-    CGFloat inset = floorf((CGRectGetMidX(self.bounds) - _itemSize.width * .5f));
-    _collectionView.contentInset = UIEdgeInsetsMake(0.f, inset, 0.f, inset);
     
     // create empty dates array
     _dates = [NSMutableArray new];
@@ -188,8 +189,8 @@ NSString * const kDateSliderCellIdentifier = @"kDateSliderCellIdentifier";
     NSDate *date = [_dates objectAtIndex:indexPath.row];
     
     // update labels
-    [cell.dayNoLabel setText:[self _dayNoTextFromDate:date]];
-    [cell.dayLabel setText:[self _dayTextForomDate:date]];
+    [cell.dayNoLabel setText:[self dayNoTextFromDate:date]];
+    [cell.dayLabel setText:[self dayTextForomDate:date]];
     [cell setNeedsLayout];
     
     return cell;
@@ -250,13 +251,13 @@ NSString * const kDateSliderCellIdentifier = @"kDateSliderCellIdentifier";
     NSDate *date = [self currentDate];
     
     // update label
-    [_centerView.dayLabel setText:[self _dayTextForomDate:date]];
-    [_centerView.dayNoLabel setText:[self _dayNoTextFromDate:date]];
-    [_centerView.monthLabel setText:[self _monthTextForomDate:date]];
+    [_centerView.dayLabel setText:[self dayTextForomDate:date]];
+    [_centerView.dayNoLabel setText:[self dayNoTextFromDate:date]];
+    [_centerView.monthLabel setText:[self monthTextForomDate:date]];
     [_centerView setNeedsLayout];
 }
 
-- (NSString *)_dayNoTextFromDate:(NSDate *)date {
+- (NSString *)dayNoTextFromDate:(NSDate *)date {
     
     // get shared calendar object
     NSCalendar * calendar = [NSCalendar autoupdatingCurrentCalendar];
@@ -267,7 +268,7 @@ NSString * const kDateSliderCellIdentifier = @"kDateSliderCellIdentifier";
     return [@([dateComponents day]) stringValue];
 }
 
-- (NSString *)_dayTextForomDate:(NSDate *)date {
+- (NSString *)dayTextForomDate:(NSDate *)date {
     
     // get shared date formatter
     static NSDateFormatter *_dateFormatter = nil;
@@ -282,7 +283,7 @@ NSString * const kDateSliderCellIdentifier = @"kDateSliderCellIdentifier";
     return [[_dateFormatter stringFromDate:date] lowercaseString];
 }
 
-- (NSString *)_monthTextForomDate:(NSDate *)date {
+- (NSString *)monthTextForomDate:(NSDate *)date {
     
     // get shared date formatter
     static NSDateFormatter *_dateFormatter = nil;

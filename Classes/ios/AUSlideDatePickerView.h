@@ -70,4 +70,33 @@
               didChangeDate:(NSDate *)date;
 @end
 
+@interface AUSlideDatePickerView (DateFormatters)
+/**
+ *  Return day number from `NSDate`
+ *
+ *  @param date `NSDate` object to transform
+ *
+ *  @return `NSString` of day number
+ */
+- (NSString *)dayNoTextFromDate:(NSDate *)date;
+
+/**
+ *  Return abbr. of name from `NSDate` (EEE)
+ *
+ *  @param date `NSDate` object to transform
+ *
+ *  @return `NSString` of day name
+ */
+- (NSString *)dayTextForomDate:(NSDate *)date;
+
+/**
+ *  Returnmonth name from `NSDate` (EEE)
+ *
+ *  @param date `NSDate` object to transform
+ *
+ *  @return `NSString` of month name
+ */
+- (NSString *)monthTextForomDate:(NSDate *)date;
+@end
+
 extern NSString * const kDateSliderCellIdentifier;
