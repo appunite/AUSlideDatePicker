@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AUSlideDatePicker"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Horizontal date picker"
   s.homepage     = "http://www.appunite.com"
   s.license      = 'MIT'
